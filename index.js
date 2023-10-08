@@ -29,9 +29,31 @@ const secondLine = new Field({
     sprite: sprite,
     ctx: ctx
 });
+const bird = new Bird({
+    x: config.brid.x,
+    y: config.brid.y,
+    width: config.brid.width,
+    height: config.brid.height,
+    frames: config.brid.frames,
+    sprite: sprite,
+    ctx: ctx,
+    frameIndex: 0
+});
+const getReady = new GetReady({
+    x: config.getReady.x,
+    y: config.getReady.y,
+    w: config.getReady.w,
+    h: config.getReady.h,
+    sX: cvs.width/2 - config.getReady.w/2,
+    sY: 80,
+    sprite: sprite,
+    ctx: ctx
+}); 
 function loop() {
     firstLine.draw();
     secondLine.draw();
+    bird.draw();
+    getReady.draw();
     requestAnimationFrame(loop);
 }
 loop();
