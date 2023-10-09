@@ -38,7 +38,8 @@ const bird = new Bird({
     frames: config.brid.frames,
     sprite: sprite,
     ctx: ctx,
-    frameIndex: frameIndex
+    frameIndex: frameIndex,
+    state: config.state
 });
 const getReady = new GetReady({
     x: config.getReady.x,
@@ -73,13 +74,18 @@ cvs.addEventListener("click", function(evt) {
             break;
     }
 })
+function update() {
+    bird.update();
+}
 function loop() {
+    update();
     firstLine.draw();
     secondLine.draw();
     bird.draw();
-    frameIndex++
+    bird.frameIndex++
+    /*
     getReady.draw();
-    gameOver.draw();
+    gameOver.draw();*/
     requestAnimationFrame(loop);
 }
 loop();
