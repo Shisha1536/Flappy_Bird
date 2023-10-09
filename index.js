@@ -5,6 +5,7 @@ ctx.fillStyle = "#70c5ce";
 ctx.fillRect(0, 0,cvs.width, cvs.height);
 const sprite = new Image();
 sprite.src = "sprite.png";
+let frameIndex = 0;
 const firstLine = new Field({
     x: config.firstLine.x,
     y: config.firstLine.y,
@@ -37,7 +38,7 @@ const bird = new Bird({
     frames: config.brid.frames,
     sprite: sprite,
     ctx: ctx,
-    frameIndex: 0
+    frameIndex: frameIndex
 });
 const getReady = new GetReady({
     x: config.getReady.x,
@@ -58,11 +59,25 @@ const gameOver = new GameOver({
     sY: 80,
     sprite: sprite,
     ctx: ctx
-}); 
+});
+cvs.addEventListener("click", function(evt) {
+    switch (config.state.current) {
+        case config.state.getReady:
+            config.state.current = config.state.game
+            break;
+        case config.state.game:
+            bird.flap();
+            break;
+        case config.state.over:
+            config.state.current = config.state.getReady;
+            break;
+    }
+})
 function loop() {
     firstLine.draw();
     secondLine.draw();
     bird.draw();
+    frameIndex++
     getReady.draw();
     gameOver.draw();
     requestAnimationFrame(loop);

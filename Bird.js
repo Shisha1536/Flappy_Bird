@@ -21,5 +21,8 @@ class Bird {
             this.y - this.height/2,
             this.width,
             this.height)
-    }    
+    }
+    flap() {
+        
+    }   
 }   

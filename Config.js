@@ -36,4 +36,10 @@ class Config {
         w: 225,
         h: 200,
     }
+    state = {
+        current: 0,
+        getReady: 0,
+        game: 1,
+        over: 2
+    }
 }
