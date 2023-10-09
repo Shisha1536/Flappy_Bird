@@ -1,4 +1,4 @@
-class GetReady {
+class GameOver {
     constructor({x, y, w, h, sX, sY, sW, sH, sprite, ctx}){
         this.x = x
         this.y = y

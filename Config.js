@@ -30,4 +30,10 @@ class Config {
         w: 173,
         h: 152,
     }
+    gameOver = {
+        x: 174,
+        y: 228,
+        w: 225,
+        h: 200,
+    }
 }

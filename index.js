@@ -48,12 +48,23 @@ const getReady = new GetReady({
     sY: 80,
     sprite: sprite,
     ctx: ctx
+});
+const gameOver = new GameOver({
+    x: config.gameOver.x,
+    y: config.gameOver.y,
+    w: config.gameOver.w,
+    h: config.gameOver.h,
+    sX: cvs.width/2 - config.gameOver.w/2,
+    sY: 80,
+    sprite: sprite,
+    ctx: ctx
 }); 
 function loop() {
     firstLine.draw();
     secondLine.draw();
     bird.draw();
     getReady.draw();
+    gameOver.draw();
     requestAnimationFrame(loop);
 }
 loop();
