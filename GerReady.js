@@ -1,5 +1,5 @@
 class GetReady {
-    constructor({x, y, w, h, sX, sY, sW, sH, sprite, ctx}){
+    constructor({x, y, w, h, sX, sY, sW, sH, sprite, ctx, state}){
         this.x = x
         this.y = y
         this.w = w
@@ -8,8 +8,11 @@ class GetReady {
         this.sY = sY
         this.sprite = sprite
         this.ctx = ctx
+        this.state = state
     }
     draw(){
-        ctx.drawImage(sprite, this.x, this.y, this.w, this.h, this.sX, this.sY, this.w, this.h)
+        if (this.state.current == this.state.getReady) {
+            ctx.drawImage(sprite, this.x, this.y, this.w, this.h, this.sX, this.sY, this.w, this.h)
+        }
     }
 }

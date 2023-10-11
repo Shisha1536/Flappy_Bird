@@ -1,5 +1,5 @@
 class Bird {
-    constructor({x, y, width, height, frames, sprite, ctx, frameIndex, state}){
+    constructor({x, y, width, height, frames, sprite, ctx, frameIndex, state, cvsH, sLH}){
         this.x = x
         this.y = y
         this.width = width
@@ -9,6 +9,11 @@ class Bird {
         this.ctx = ctx
         this.frameIndex = frameIndex
         this.state = state
+        this.speed = 0
+        this.gravity = 0.25
+        this.jump = 4
+        this.cvsH = cvsH
+        this.sLH = sLH
     }
     draw() {
         ctx.drawImage(
@@ -24,11 +29,24 @@ class Bird {
             this.height)
     }
     update() {
-       let period = this.state.current == this.state.getReady ? 10 : 5;
+        if (this.state.current == this.state.getReady) {
+           this.y = 150;
+           this.speed = 0; 
+        } else {
+            this.speed += this.gravity;
+            this.y += this.speed;
+            if (this.y + this.height/2 >= this.cvsH - this.sLH) {
+                this.y = this.cvsH - this.sLH -this.height/2;
+                if (this.state.current == this.state.game) {
+                    this.state.current = this.state.over;
+                }
+            }
+        }
+        let period = this.state.current == this.state.getReady ? 10 : 5;
         this.frameIndex += this.frames%period == 0 ? 1: 0;
         this.frameIndex = this.frameIndex%this.frames.length;
     }
     flap() {
-
+        this.speed = - this.jump;
     } 
 }   

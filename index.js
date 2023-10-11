@@ -1,8 +1,6 @@
 const config = new Config();
 const cvs = document.getElementById(config.cvsId);
 const ctx = cvs.getContext("2d");
-ctx.fillStyle = "#70c5ce";
-ctx.fillRect(0, 0,cvs.width, cvs.height);
 const sprite = new Image();
 sprite.src = "sprite.png";
 let frameIndex = 0;
@@ -39,7 +37,9 @@ const bird = new Bird({
     sprite: sprite,
     ctx: ctx,
     frameIndex: frameIndex,
-    state: config.state
+    state: config.state,
+    cvsH: cvs.height,
+    sLH: config.secondLine.height
 });
 const getReady = new GetReady({
     x: config.getReady.x,
@@ -49,6 +49,7 @@ const getReady = new GetReady({
     sX: cvs.width/2 - config.getReady.w/2,
     sY: 80,
     sprite: sprite,
+    state: config.state,
     ctx: ctx
 });
 const gameOver = new GameOver({
@@ -59,6 +60,7 @@ const gameOver = new GameOver({
     sX: cvs.width/2 - config.gameOver.w/2,
     sY: 80,
     sprite: sprite,
+    state: config.state,
     ctx: ctx
 });
 cvs.addEventListener("click", function(evt) {
@@ -78,14 +80,15 @@ function update() {
     bird.update();
 }
 function loop() {
+    ctx.fillStyle = "#70c5ce";
+    ctx.fillRect(0, 0,cvs.width, cvs.height);
     update();
     firstLine.draw();
     secondLine.draw();
     bird.draw();
     bird.frameIndex++
-    /*
     getReady.draw();
-    gameOver.draw();*/
+    gameOver.draw();
     requestAnimationFrame(loop);
 }
 loop();
