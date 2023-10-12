@@ -9,8 +9,9 @@ class Config {
     secondLine = {
         x: 276,
         y: 1,
-        width: 223,
-        height: 110
+        width: 224,
+        height: 112,
+        dx: 2
     }
     brid = {
         x: 50,

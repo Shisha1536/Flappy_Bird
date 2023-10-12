@@ -29,6 +29,9 @@ class Bird {
             this.height)
     }
     update() {
+        let period = this.state.current == this.state.getReady ? 10 : 5;
+        this.frameIndex += this.frames%period == 0 ? 1: 0;
+        this.frameIndex = this.frameIndex%this.frames.length;
         if (this.state.current == this.state.getReady) {
            this.y = 150;
            this.speed = 0; 
@@ -42,9 +45,9 @@ class Bird {
                 }
             }
         }
-        let period = this.state.current == this.state.getReady ? 10 : 5;
-        this.frameIndex += this.frames%period == 0 ? 1: 0;
-        this.frameIndex = this.frameIndex%this.frames.length;
+        if (this.speed >= this.jump) {
+            this.frameIndex = 1;
+        }
     }
     flap() {
         this.speed = - this.jump;

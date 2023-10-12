@@ -1,5 +1,5 @@
 class Field {
-    constructor({x, y, width, height, sX, sY, sWidth, sHeight, sprite, ctx}){
+    constructor({x, y, width, height, sX, sY, sWidth, sHeight, sprite, ctx, dx, state}){
         this.x = x
         this.y = y
         this.width = width
@@ -12,9 +12,16 @@ class Field {
 
         this.sprite = sprite
         this.ctx = ctx
+        this.dx = dx
+        this.state = state
     }
     draw() {
         ctx.drawImage(sprite, this.x, this.y, this.width, this.height, this.sX, this.sHeight - this.height, this.width, this.height)
         ctx.drawImage(sprite, this.x, this.y, this.width, this.height, this.sX + this.width, this.sHeight - this.height, this.width, this.height)
+    }
+    update() {
+        if (this.state.current == this.state.game) {
+            this.sX = (this.sX - this.dx)%(this.width/2);
+        }
     }
 }

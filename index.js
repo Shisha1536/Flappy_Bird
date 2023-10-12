@@ -26,7 +26,9 @@ const secondLine = new Field({
     sWidth: cvs.width,
     sHeight: cvs.height,
     sprite: sprite,
-    ctx: ctx
+    ctx: ctx,
+    dx: config.secondLine.dx,
+    state: config.state
 });
 const bird = new Bird({
     x: config.brid.x,
@@ -77,6 +79,7 @@ cvs.addEventListener("click", function(evt) {
     }
 })
 function update() {
+    secondLine.update();
     bird.update();
 }
 function loop() {
