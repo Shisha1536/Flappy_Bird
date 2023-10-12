@@ -65,6 +65,17 @@ const gameOver = new GameOver({
     state: config.state,
     ctx: ctx
 });
+const pipes = new Pipes({
+    bottom: config.pipes.bottom,
+    top:config.pipes.top,
+    w: config.pipes.w,
+    h: config.pipes.h,
+    gap: config.pipes.gap,
+    dx: config.pipes.dx,
+    sprite: sprite,
+    ctx: ctx,
+    state: state,
+});
 cvs.addEventListener("click", function(evt) {
     switch (config.state.current) {
         case config.state.getReady:

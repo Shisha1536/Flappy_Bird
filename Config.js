@@ -43,4 +43,18 @@ class Config {
         game: 1,
         over: 2
     }
+    pipes = {
+        bottom: {
+            x: 502,
+            y: 0
+        },
+        top: {
+            x: 554,
+            y: 0
+        },
+        w: 53,
+        h: 400,
+        gap: 85,
+        dx: 2
+    }
 }
