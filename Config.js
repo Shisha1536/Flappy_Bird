@@ -44,6 +44,7 @@ class Config {
         over: 2
     }
     pipes = {
+        position: [],
         bottom: {
             x: 502,
             y: 0
@@ -55,6 +56,7 @@ class Config {
         w: 53,
         h: 400,
         gap: 85,
-        dx: 2
+        dx: 2,
+        maxY: -150
     }
 }

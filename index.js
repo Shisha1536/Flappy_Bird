@@ -66,15 +66,21 @@ const gameOver = new GameOver({
     ctx: ctx
 });
 const pipes = new Pipes({
+    position : config.pipes.position,
     bottom: config.pipes.bottom,
     top:config.pipes.top,
     w: config.pipes.w,
     h: config.pipes.h,
     gap: config.pipes.gap,
+
+    sX: 150,
+    maxY: config.pipes.maxY,
+    sW: cvs.width,
+    frameIndex: frameIndex,
     dx: config.pipes.dx,
     sprite: sprite,
     ctx: ctx,
-    state: state,
+    state: config.state
 });
 cvs.addEventListener("click", function(evt) {
     switch (config.state.current) {
@@ -92,6 +98,7 @@ cvs.addEventListener("click", function(evt) {
 function update() {
     secondLine.update();
     bird.update();
+    pipes.update();
 }
 function loop() {
     ctx.fillStyle = "#70c5ce";
@@ -103,6 +110,8 @@ function loop() {
     bird.frameIndex++
     getReady.draw();
     gameOver.draw();
+    pipes.draw();
+    pipes.frameIndex++
     requestAnimationFrame(loop);
 }
 loop();
