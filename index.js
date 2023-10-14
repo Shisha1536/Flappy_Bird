@@ -108,10 +108,12 @@ function loop() {
     secondLine.draw();
     bird.draw();
     bird.frameIndex++
-    getReady.draw();
-    gameOver.draw();
+    
+    
     pipes.draw();
     pipes.frameIndex++
+    gameOver.draw();
+    getReady.draw();
     requestAnimationFrame(loop);
 }
 loop();

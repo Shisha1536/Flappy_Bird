@@ -28,16 +28,18 @@ class Pipes {
         }
     }
     update() {
-        if(this.frameIndex%100 == 0){
-            this.position.push({
-                x : this.sW,
-                y : this.maxY * ( Math.random() + 1)
-            });
-        }
-        for(let i = 0; i < this.position.length; i++){
-            let p = this.position[i];
-    
-            p.x -= this.dx;
+        if (this.state.current == this.state.game) {
+            if(this.frameIndex%100 == 0){
+                this.position.push({
+                    x : this.sW,
+                    y : this.maxY * ( Math.random() + 1)
+                });
+            }
+            for(let i = 0; i < this.position.length; i++){
+                let p = this.position[i];
+        
+                p.x -= this.dx;
+            }
         }
     }
 }
