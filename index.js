@@ -81,7 +81,8 @@ const pipes = new Pipes({
     dx: config.pipes.dx,
     sprite: sprite,
     ctx: ctx,
-    state: config.state
+    state: config.state,
+    bird: bird
 });
 cvs.addEventListener("click", function(evt) {
     switch (config.state.current) {
@@ -96,11 +97,6 @@ cvs.addEventListener("click", function(evt) {
             break;
     }
 });
-function crash() {
-    if(bird.x + bird.radius > p.x && bird.x - bird.radius < p.x + this.w && bird.y + bird.radius > p.y && bird.y - bird.radius < p.y + this.h){
-        config.state.current = config.state.over;
-    }
-}
 function update() {
     secondLine.update();
     bird.update();
@@ -118,7 +114,6 @@ function loop() {
     pipes.frameIndex++
     gameOver.draw();
     getReady.draw();
-    crash();
     requestAnimationFrame(loop);
 }
 loop();

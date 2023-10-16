@@ -1,5 +1,5 @@
 class Pipes {
-    constructor({position, bottom, top, w, h, gap, sX, maxY, sW, sprite, ctx, dx, state, frameIndex}){
+    constructor({position, bottom, top, w, h, gap, sX, maxY, sW, sprite, ctx, dx, state, frameIndex, bird}){
         this.position = position
         this.bottom = bottom
         this.top = top
@@ -16,6 +16,7 @@ class Pipes {
         this.ctx = ctx
         this.dx = dx
         this.state = state
+        this.bird = bird
     }
     draw() {
         for(let i  = 0; i < this.position.length; i++){
@@ -37,8 +38,16 @@ class Pipes {
             }
             for(let i = 0; i < this.position.length; i++){
                 let p = this.position[i];
+
+                let bottomPipeYPos = p.y + this.h + this.gap;
         
                 p.x -= this.dx;
+                if(this.bird.x + this.bird.radius > p.x && this.bird.x - this.bird.radius < p.x + this.w && this.bird.y + this.bird.radius > p.y && this.bird.y - this.bird.radius < p.y + this.h){
+                    this.state.current = this.state.over;
+                }
+                if(this.bird.x + this.bird.radius > p.x && this.bird.x - this.bird.radius < p.x + this.w && this.bird.y + this.bird.radius > bottomPipeYPos && this.bird.y - this.bird.radius < bottomPipeYPos + this.h){
+                    this.state.current = this.state.over;
+                }
             }
         } else if (this.state.current == this.state.getReady) {
             this.position = [];
