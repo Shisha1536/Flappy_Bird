@@ -40,6 +40,8 @@ class Pipes {
         
                 p.x -= this.dx;
             }
+        } else if (this.state.current == this.state.getReady) {
+            this.position = [];
         }
     }
 }

@@ -23,7 +23,8 @@ class Config {
             {sX: 276, sY: 139},
             {sX: 276, sY: 164},
             {sX: 276, sY: 139}
-        ]
+        ],
+        radius: 12
     }
     getReady = {
         x: 0,

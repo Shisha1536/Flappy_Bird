@@ -1,10 +1,11 @@
 class Bird {
-    constructor({x, y, width, height, frames, sprite, ctx, frameIndex, state, cvsH, sLH}){
+    constructor({x, y, width, height, frames, radius, sprite, ctx, frameIndex, state, cvsH, sLH}){
         this.x = x
         this.y = y
         this.width = width
         this.height = height
         this.frames = frames
+        this.radius = radius
         this.sprite = sprite
         this.ctx = ctx
         this.frameIndex = frameIndex

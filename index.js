@@ -36,6 +36,7 @@ const bird = new Bird({
     width: config.brid.width,
     height: config.brid.height,
     frames: config.brid.frames,
+    radius: config.brid.radius,
     sprite: sprite,
     ctx: ctx,
     frameIndex: frameIndex,
@@ -94,7 +95,12 @@ cvs.addEventListener("click", function(evt) {
             config.state.current = config.state.getReady;
             break;
     }
-})
+});
+function crash() {
+    if(bird.x + bird.radius > p.x && bird.x - bird.radius < p.x + this.w && bird.y + bird.radius > p.y && bird.y - bird.radius < p.y + this.h){
+        config.state.current = config.state.over;
+    }
+}
 function update() {
     secondLine.update();
     bird.update();
@@ -108,12 +114,11 @@ function loop() {
     secondLine.draw();
     bird.draw();
     bird.frameIndex++
-    
-    
     pipes.draw();
     pipes.frameIndex++
     gameOver.draw();
     getReady.draw();
+    crash();
     requestAnimationFrame(loop);
 }
 loop();
