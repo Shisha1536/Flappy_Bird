@@ -10,8 +10,7 @@ class Config {
         x: 276,
         y: 1,
         width: 224,
-        height: 112,
-        dx: 2
+        height: 112
     }
     brid = {
         x: 50,
@@ -56,8 +55,7 @@ class Config {
         },
         w: 53,
         h: 400,
-        gap: 85,
-        dx: 2,
+        gap: 100,
         maxY: -150
     }
 }

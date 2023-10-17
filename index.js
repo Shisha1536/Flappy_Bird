@@ -4,6 +4,8 @@ const ctx = cvs.getContext("2d");
 const sprite = new Image();
 sprite.src = "sprite.png";
 let frameIndex = 0;
+const dx = 2;
+const record = parseInt(localStorage.getItem("FB")) || 0;
 const firstLine = new Field({
     x: config.firstLine.x,
     y: config.firstLine.y,
@@ -27,7 +29,7 @@ const secondLine = new Field({
     sHeight: cvs.height,
     sprite: sprite,
     ctx: ctx,
-    dx: config.secondLine.dx,
+    dx: dx,
     state: config.state
 });
 const bird = new Bird({
@@ -55,17 +57,6 @@ const getReady = new GetReady({
     state: config.state,
     ctx: ctx
 });
-const gameOver = new GameOver({
-    x: config.gameOver.x,
-    y: config.gameOver.y,
-    w: config.gameOver.w,
-    h: config.gameOver.h,
-    sX: cvs.width/2 - config.gameOver.w/2,
-    sY: 80,
-    sprite: sprite,
-    state: config.state,
-    ctx: ctx
-});
 const pipes = new Pipes({
     position : config.pipes.position,
     bottom: config.pipes.bottom,
@@ -78,11 +69,24 @@ const pipes = new Pipes({
     maxY: config.pipes.maxY,
     sW: cvs.width,
     frameIndex: frameIndex,
-    dx: config.pipes.dx,
+    dx: dx,
     sprite: sprite,
     ctx: ctx,
     state: config.state,
-    bird: bird
+    bird: bird,
+    value: 0,
+    record: record
+});
+const gameOver = new GameOver({
+    x: config.gameOver.x,
+    y: config.gameOver.y,
+    w: config.gameOver.w,
+    h: config.gameOver.h,
+    sX: cvs.width/2 - config.gameOver.w/2,
+    sY: 80,
+    sprite: sprite,
+    state: config.state,
+    ctx: ctx
 });
 cvs.addEventListener("click", function(evt) {
     switch (config.state.current) {
@@ -98,22 +102,22 @@ cvs.addEventListener("click", function(evt) {
     }
 });
 function update() {
-    secondLine.update();
+    secondLine.update(pipes.value);
     bird.update();
     pipes.update();
 }
 function loop() {
     ctx.fillStyle = "#70c5ce";
     ctx.fillRect(0, 0,cvs.width, cvs.height);
-    update();
     firstLine.draw();
     secondLine.draw();
     bird.draw();
     bird.frameIndex++
     pipes.draw();
     pipes.frameIndex++
-    gameOver.draw();
+    gameOver.draw(pipes.record, pipes.value);
     getReady.draw();
+    update();
     requestAnimationFrame(loop);
 }
 loop();

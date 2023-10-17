@@ -19,9 +19,17 @@ class Field {
         ctx.drawImage(sprite, this.x, this.y, this.width, this.height, this.sX, this.sHeight - this.height, this.width, this.height)
         ctx.drawImage(sprite, this.x, this.y, this.width, this.height, this.sX + this.width, this.sHeight - this.height, this.width, this.height)
     }
-    update() {
+    update(value) {
+        let speed = this.dx
+        if (value > 0) {
+            if (value%10 == 0) {
+                speed++
+            }    
+        }
         if (this.state.current == this.state.game) {
-            this.sX = (this.sX - this.dx)%(this.width/2);
+            this.sX = (this.sX - speed)%(this.width/2);
+        } else {
+            speed = this.dx;
         }
     }
 }
